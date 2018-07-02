@@ -63,7 +63,7 @@ model.add(Conv2D(filters=512,kernel_size=3,strides=2,kernel_initializer='Truncat
 model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(2048, activation='relu'))
-model.add(Dense(1,activation='relu'))
+model.add(Dense(1))
 model.summary()
 
 model.compile(optimizer='adam',loss=losses.mean_squared_error,metrics=['mse'])

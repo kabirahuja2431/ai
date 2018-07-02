@@ -1,7 +1,7 @@
 import numpy as np
 from keras.models import Sequential
 from keras import losses
-from keras.callbacks import ModelCheckPoint
+from keras.callbacks import ModelCheckpoint
 from keras.layers import Dense, LSTM, Dropout
 import tensorflow as tf
 import skimage
@@ -22,11 +22,11 @@ model = Sequential()
 model.add(LSTM(128,batch_input_shape = [None,30,288] , return_sequences = False))
 model.add(Dropout(0.75))
 model.add(Dense(256,activation = 'relu'))
-model.add(Dense(1,activation = 'relu'))
+model.add(Dense(1))
 
 model.summary()
 
-model.compile(optimizer='rmsprop',loss=losses.squared_mean_error,metrics = ['accuracy'])
+model.compile(optimizer='rmsprop',loss=losses.mean_squared_error,metrics = ['accuracy'])
 
 checkpoint = ModelCheckpoint(filepath='best.hdf5', verbose=1, save_best_only=True)
 callbacks_list = [checkpoint]
